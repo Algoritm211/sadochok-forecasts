@@ -1,13 +1,139 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
+}
+.ant-layout{
+  background: #ffffff!important;
+}
+.ant-layout-header {
+  height: 75px !important;
+  width: 100%;
+  padding: 0 15px !important;
+  margin-right: auto;
+  margin-left: auto;
+  background: #ffffff!important;
+}
+.ant-drawer-content-wrapper{
+  width: 310px!important;
+}
+.app-logo{
+  height: 32px;
+}
+.drawer-username{
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+.ant-layout-sider{
+  background: #f3f3f3!important;
+}
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left{
+  border: none!important;
+}
+.ant-layout-sider{
+  display: block;
+}
+@media screen and (max-width: 768px){
+  .ant-layout-sider{
+    display: none;
+  }
+}
+.top-articles-title{
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+.sider-kapper-title{
+  font-size: 14px;
+}
+.sider-kapper-rate{
+  font-size: 12px;
+}
+.sider-hot-news-title{
+  font-size: 14px;
+}
+.sider-hot-news-description{
+  font-size: 10px;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -ms-line-clamp: 3;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  display: -webkit-box;
+  display: box;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+}
+.app-body {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .app-body,
+  .ant-layout-header {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-body,
+  .ant-layout-header {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .app-body,
+  .ant-layout-header {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .app-body,
+  .ant-layout-header {
+    max-width: 1140px;
+  }
+}
+
+.forecast-card{
+  border: 1px solid rgb(76 215 240);
+}
+.forecast-card-title{
+  font-size: 16px;
+}
+.forecast-card-linked-match{
+  font-size: 10px;
+}
+.forecast-card-short-description{
+  font-size: 12px;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -ms-line-clamp: 3;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  display: -webkit-box;
+  display: box;
+  word-wrap: break-word;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+}
+.forecast-card-like-section{
 }
