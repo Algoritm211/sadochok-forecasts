@@ -6,6 +6,9 @@
     "@testing-library/jest-dom": "^5.16.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "luxon": "^2.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -34,5 +37,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Algoritm211/sadochok-forecasts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Algoritm211/sadochok-forecasts/issues"
+  },
+  "homepage": "https://github.com/Algoritm211/sadochok-forecasts#readme"
 }
