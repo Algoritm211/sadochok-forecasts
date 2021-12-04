@@ -88,6 +88,15 @@ const App = () => {
                                                 est omnis sit est minima. Rem
                                                 vel sit explicabo quae quod repudiandae inventore animi… Asperiores
                                                 doloribus repudiandae architecto adipisci ipsum architecto odio</p>
+                                            <div className="d-flex align-items-center">
+                                                <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
+                                                <div className="ml-2">
+                                                    <h3 className="sider-kapper-title m-0">Alexey Horbunov</h3>
+                                                </div>
+                                                <div className="ml-auto">
+                                                    <Button icon={<i className="far fa-heart mr-1"/>}>13</Button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </Col>
                                     <Col className="gutter-row" xs={{span: 24}} md={{span: 12}}>
@@ -106,6 +115,15 @@ const App = () => {
                                                 ab quia architecto. Occaecati hic sequi tempore est omnis sit est
                                                 minima. Rem
                                                 vel sit explicabo quae quod repudiandae inventore animi…</p>
+                                            <div className="d-flex align-items-center">
+                                                <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
+                                                <div className="ml-2">
+                                                    <h3 className="sider-kapper-title m-0">Edward Kvashyn</h3>
+                                                </div>
+                                                <div className="ml-auto">
+                                                    <Button type="primary" icon={<i className="far fa-heart mr-1"/>}>62</Button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </Col>
                                     <Col className="gutter-row" xs={{span: 24}} md={{span: 12}}>
@@ -124,6 +142,15 @@ const App = () => {
                                                 ab quia architecto. Occaecati hic sequi tempore est omnis sit est
                                                 minima. Rem
                                                 vel sit explicabo quae quod repudiandae inventore animi…</p>
+                                            <div className="d-flex align-items-center">
+                                                <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
+                                                <div className="ml-2">
+                                                    <h3 className="sider-kapper-title m-0">Edward Kvashyn</h3>
+                                                </div>
+                                                <div className="ml-auto">
+                                                    <Button icon={<i className="far fa-heart mr-1"/>}>62</Button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </Col>
                                     <Col className="gutter-row" xs={{span: 24}} md={{span: 12}}>
@@ -139,6 +166,15 @@ const App = () => {
                                                 est omnis sit est minima. Rem
                                                 vel sit explicabo quae quod repudiandae inventore animi… Asperiores
                                                 doloribus repudiandae architecto adipisci ipsum architecto odio</p>
+                                            <div className="d-flex align-items-center">
+                                                <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
+                                                <div className="ml-2">
+                                                    <h3 className="sider-kapper-title m-0">Alexey Horbunov</h3>
+                                                </div>
+                                                <div className="ml-auto">
+                                                    <Button icon={<i className="far fa-heart mr-1"/>}>13</Button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </Col>
                                 </Row>
@@ -233,7 +269,7 @@ const App = () => {
                     </Layout>
                 </div>
                 <Footer>
-                    <div className="d-flex m-0">
+                    <div className="d-md-block d-flex m-0">
                         <h5 className="m-0">ForecastShare. Platform for sharing forecasts with sport community.</h5>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a className="ml-auto" href="#">Telegram Bot</a>
