@@ -50,4 +50,5 @@ function FormatObject(item, index) {
 }
 
 //For Enter Just Use:
-//GetAllMatches(sport).then((data) => console.log(data));
+//GetAllMatches('soccer').then((data) => console.log(data));
+//You can use 'basketball' insted of soccer for basketball data
