@@ -4,9 +4,112 @@ import './css/blastercss.css';
 import './index.css';
 import fakeAvatar from './images/temp-avatar.jpg';
 import forecastShare from './images/forecastshare.png';
+import {GetAllMatches} from './APIHelper'
 
 const style = {background: '#0092ff', padding: '8px 0'};
 const {Header, Footer, Sider, Content} = Layout;
+
+const mainMenu = [
+    {
+        key: 'home',
+        title: 'Главная',
+        styles: "fas fa-home"
+    },
+    {
+        key: 'cabinet',
+        title: 'Мой кабинет',
+        styles: "fas fa-user-alt"
+    },
+    {
+        key: 'settings',
+        title: 'Мои настройки',
+        styles: "fas fa-cog"
+    },
+    {
+        key: 'quit',
+        title: 'Выйти',
+        styles: "fas fa-sign-out-alt"
+    }
+]
+
+const categories = [
+    {
+        key: 'hot',
+        title: 'Горячее',
+    },
+    {
+        key: 'soccer',
+        title: 'Футбол',
+    },
+    {
+        key: 'tennis',
+        title: 'Теннис',
+    },
+    {
+        key: 'cybersport',
+        title: 'Киберспорт',
+    }
+]
+
+const kappers = [
+    {
+        name: "Alexey Horbunov",
+        rate: '5.0'
+    },
+    {
+        name: "Edward Kbashyn",
+        rate: '5.0'
+    },
+    {
+        name: "Timofey Fedorchuk",
+        rate: '5.0'
+    }
+]
+
+const cards = [
+    {
+        title: 'Барселона - Реал Мадрид',
+        linkedMatch: 'Barcelona(1.64) - Real Madrid(1.34)',
+        authorName: "Alexey Horbunov",
+        likes: '13',
+        description: 'Occaecati hic sequi tempore est omnis sit est minima. Rem vel sit explicabo quae quod repudiandae inventore animi… Asperiores doloribus repudiandae architecto adipisci ipsum architecto odio'
+    },
+    {
+        title: 'Шахтер - Динамо',
+        linkedMatch: 'Shacktar(1.8) - Dynamo(1.44)',
+        authorName: "Edward Kvashyn",
+        likes: '63',
+        description: 'Asperiores doloribus\n' +
+            '                                            repudiandae\n' +
+            '                                            architecto adipisci ipsum architecto odio. Doloremque minima tenetur\n' +
+            '                                            aspernatur\n' +
+            '                                            ab quia architecto. Occaecati hic sequi tempore est omnis sit est\n' +
+            '                                            minima. Rem\n' +
+            '                                            vel sit explicabo quae quod repudiandae inventore animi…'
+    },
+    {
+        title: 'Челси - Манчестер Юнайтед',
+        linkedMatch: 'Chelsea(1.91) - Manchester United(3.34)',
+        authorName: "Timofey Fedorchuk",
+        likes: '39',
+        description: 'Occaecati hic sequi tempore est omnis sit est minima. Rem vel sit explicabo quae quod repudiandae inventore animi… Asperiores doloribus repudiandae architecto adipisci ipsum architecto odio'
+    },
+    {
+        title: 'Зоря - Карпаты',
+        linkedMatch: 'Zorya(2.64) - Karpati(4.82)',
+        authorName: "Edward Kvashyn",
+        likes: '23',
+        description: 'Asperiores doloribus\n' +
+            '                                            repudiandae\n' +
+            '                                            architecto adipisci ipsum architecto odio. Doloremque minima tenetur\n' +
+            '                                            aspernatur\n' +
+            '                                            ab quia architecto. Occaecati hic sequi tempore est omnis sit est\n' +
+            '                                            minima. Rem\n' +
+            '                                            vel sit explicabo quae quod repudiandae inventore animi…'
+    }
+]
+
+// GetAllMatches('soccer').then((data) => console.log(data));
 
 const App = () => {
     const [visible, setVisible] = useState(false);
@@ -24,6 +127,85 @@ const App = () => {
     const onClose = () => {
         setVisible(false);
     };
+
+    const menuItem = categories.map((item) => {
+        return (
+            <Menu.Item key={item.key}>
+                {item.title}
+            </Menu.Item>
+        )
+    })
+
+    const mainMenuItem = mainMenu.map((item) => {
+        return (
+            <Menu.Item key={item.key} icon={<i className={item.styles}/>}>
+                {item.title}
+            </Menu.Item>
+        )
+    })
+
+    const hotNews = cards.slice(0, 3).map((item) => {
+        return (
+            <div className="sider-hot-news">
+                <div className="d-flex align-items-center">
+                    <h3 className="sider-hot-news-title m-0">{item.title}</h3>
+                    <i className="fab fa-hotjar ml-auto" style={{color: "red"}}/>
+                </div>
+                <p className="sider-hot-news-description mb-1">{item.description}</p>
+                <hr style={{
+                    color: "rgb(0 0 0 / 85%)",
+                    borderTop: "1px solid rgba(0,0,0,.06)"
+                }}/>
+            </div>
+        )
+    })
+
+    const topKappers = kappers.map((item) => {
+        return (
+            <div className="top-kappers">
+                <div className="d-flex align-items-center sider-kapper-item mb-3">
+                    <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
+                    <div className="ml-2">
+                        <h3 className="sider-kapper-title m-0">{item.name}</h3>
+                        <div className="sider-kapper-rate d-flex align-items-center">
+                            <i className="fas fa-star mr-2"/>
+                            <p className="m-0">{item.rate}</p>
+                        </div>
+                    </div>
+                </div>
+                <hr style={{
+                    color: "rgb(0 0 0 / 85%)",
+                    borderTop: "1px solid rgba(0,0,0,.06)"
+                }}/>
+            </div>
+        )
+    })
+
+    const forecastCards = cards.map((item) => {
+        return (
+            <Col className="gutter-row" xs={{span: 24}} md={{span: 12}}>
+                <div className="forecast-card p-2">
+                    <h3 className="forecast-card-title mb-0">{item.title}</h3>
+                    <h5 className="forecast-card-linked-match">{item.linkedMatch}</h5>
+                    <hr style={{
+                        color: "rgb(0 0 0 / 85%)",
+                        borderTop: "rgba(0,0,0,.06)"
+                    }}/>
+                    <p className="forecast-card-short-description">{item.description}</p>
+                    <div className="d-flex align-items-center">
+                        <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
+                        <div className="ml-2">
+                            <h3 className="sider-kapper-title m-0">{item.authorName}</h3>
+                        </div>
+                        <div className="ml-auto">
+                            <Button icon={<i className="far fa-heart mr-1"/>}>{item.likes}</Button>
+                        </div>
+                    </div>
+                </div>
+            </Col>
+        )
+    })
+
     return (
         <div className="App">
             <Drawer title="Главное меню" placement="right" onClose={onClose} visible={visible}>
@@ -35,20 +217,7 @@ const App = () => {
                     </div>
                 </div>
                 <Divider/>
-                <Menu mode="inline" theme="light">
-                    <Menu.Item key="home" icon={<i className="fas fa-home"/>}>
-                        Главная
-                    </Menu.Item>
-                    <Menu.Item key="cabinet" icon={<i className="fas fa-user-alt"/>}>
-                        Мой кабинет
-                    </Menu.Item>
-                    <Menu.Item key="settings" icon={<i className="fas fa-cog"/>}>
-                        Мои настройки
-                    </Menu.Item>
-                    <Menu.Item key="quit" icon={<i className="fas fa-sign-out-alt"/>}>
-                        Выйти
-                    </Menu.Item>
-                </Menu>
+                <Menu mode="inline" theme="light">{mainMenuItem}</Menu>
             </Drawer>
             <Layout>
                 <Header>
@@ -62,208 +231,17 @@ const App = () => {
                 <div className="app-body">
                     <Layout>
                         <Content>
-                            <Menu onClick={handleClick} selectedKeys={[menuCurrent]} mode="horizontal">
-                                <Menu.Item key="hot">
-                                    Горячее
-                                </Menu.Item>
-                                <Menu.Item key="soccer">
-                                    Футбол
-                                </Menu.Item>
-                                <Menu.Item key="tennis">
-                                    Теннис
-                                </Menu.Item>
-                            </Menu>
-                            <div className="p-3">
-                                <Row gutter={[16, 16]}>
-                                    <Col className="gutter-row" xs={{span: 24}} md={{span: 12}}>
-                                        <div className="forecast-card p-2">
-                                            <h3 className="forecast-card-title mb-0">Динамо - Шахтер</h3>
-                                            <h5 className="forecast-card-linked-match"> Dynamo(1.89) - Barcelona
-                                                (1.89)</h5>
-                                            <hr style={{
-                                                color: "rgb(0 0 0 / 85%)",
-                                                borderTop: "rgba(0,0,0,.06)"
-                                            }}/>
-                                            <p className="forecast-card-short-description">Occaecati hic sequi tempore
-                                                est omnis sit est minima. Rem
-                                                vel sit explicabo quae quod repudiandae inventore animi… Asperiores
-                                                doloribus repudiandae architecto adipisci ipsum architecto odio</p>
-                                            <div className="d-flex align-items-center">
-                                                <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
-                                                <div className="ml-2">
-                                                    <h3 className="sider-kapper-title m-0">Alexey Horbunov</h3>
-                                                </div>
-                                                <div className="ml-auto">
-                                                    <Button icon={<i className="far fa-heart mr-1"/>}>13</Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col className="gutter-row" xs={{span: 24}} md={{span: 12}}>
-                                        <div className="forecast-card p-2">
-                                            <h3 className="forecast-card-title mb-0">Бавария - Барселона</h3>
-                                            <h5 className="forecast-card-linked-match"> Bayern(1.64) - Barcelona
-                                                (3.24)</h5>
-                                            <hr style={{
-                                                color: "rgb(0 0 0 / 85%)",
-                                                borderTop: "rgba(0,0,0,.06)"
-                                            }}/>
-                                            <p className="forecast-card-short-description">Asperiores doloribus
-                                                repudiandae
-                                                architecto adipisci ipsum architecto odio. Doloremque minima tenetur
-                                                aspernatur
-                                                ab quia architecto. Occaecati hic sequi tempore est omnis sit est
-                                                minima. Rem
-                                                vel sit explicabo quae quod repudiandae inventore animi…</p>
-                                            <div className="d-flex align-items-center">
-                                                <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
-                                                <div className="ml-2">
-                                                    <h3 className="sider-kapper-title m-0">Edward Kvashyn</h3>
-                                                </div>
-                                                <div className="ml-auto">
-                                                    <Button type="primary" icon={<i className="far fa-heart mr-1"/>}>62</Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col className="gutter-row" xs={{span: 24}} md={{span: 12}}>
-                                        <div className="forecast-card p-2">
-                                            <h3 className="forecast-card-title mb-0">Бавария - Барселона</h3>
-                                            <h5 className="forecast-card-linked-match"> Bayern(1.64) - Barcelona
-                                                (3.24)</h5>
-                                            <hr style={{
-                                                color: "rgb(0 0 0 / 85%)",
-                                                borderTop: "rgba(0,0,0,.06)"
-                                            }}/>
-                                            <p className="forecast-card-short-description">Asperiores doloribus
-                                                repudiandae
-                                                architecto adipisci ipsum architecto odio. Doloremque minima tenetur
-                                                aspernatur
-                                                ab quia architecto. Occaecati hic sequi tempore est omnis sit est
-                                                minima. Rem
-                                                vel sit explicabo quae quod repudiandae inventore animi…</p>
-                                            <div className="d-flex align-items-center">
-                                                <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
-                                                <div className="ml-2">
-                                                    <h3 className="sider-kapper-title m-0">Edward Kvashyn</h3>
-                                                </div>
-                                                <div className="ml-auto">
-                                                    <Button icon={<i className="far fa-heart mr-1"/>}>62</Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col className="gutter-row" xs={{span: 24}} md={{span: 12}}>
-                                        <div className="forecast-card p-2">
-                                            <h3 className="forecast-card-title mb-0">Динамо - Шахтер</h3>
-                                            <h5 className="forecast-card-linked-match"> Dynamo(1.89) - Barcelona
-                                                (1.89)</h5>
-                                            <hr style={{
-                                                color: "rgb(0 0 0 / 85%)",
-                                                borderTop: "rgba(0,0,0,.06)"
-                                            }}/>
-                                            <p className="forecast-card-short-description">Occaecati hic sequi tempore
-                                                est omnis sit est minima. Rem
-                                                vel sit explicabo quae quod repudiandae inventore animi… Asperiores
-                                                doloribus repudiandae architecto adipisci ipsum architecto odio</p>
-                                            <div className="d-flex align-items-center">
-                                                <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
-                                                <div className="ml-2">
-                                                    <h3 className="sider-kapper-title m-0">Alexey Horbunov</h3>
-                                                </div>
-                                                <div className="ml-auto">
-                                                    <Button icon={<i className="far fa-heart mr-1"/>}>13</Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                </Row>
-
-                            </div>
+                            <Menu onClick={handleClick} selectedKeys={[menuCurrent]} mode="horizontal">{menuItem}</Menu>
+                            <Row className="p-3" gutter={[16, 16]}>{forecastCards}</Row>
                         </Content>
                         <Sider>
                             <div className="p-3">
                                 <h3 className="top-articles-title">ТОП капперы</h3>
-                                <div className="d-flex align-items-center sider-kapper-item mb-3">
-                                    <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
-                                    <div className="ml-2">
-                                        <h3 className="sider-kapper-title m-0">Alexey Horbunov</h3>
-                                        <div className="sider-kapper-rate d-flex align-items-center">
-                                            <i className="fas fa-star mr-2"/>
-                                            <p className="m-0">5.0</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr style={{
-                                    color: "rgb(0 0 0 / 85%)",
-                                    borderTop: "1px solid rgba(0,0,0,.06)"
-                                }}/>
-                                <div className="d-flex align-items-center sider-kapper-item mb-3">
-                                    <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
-                                    <div className="ml-2">
-                                        <h3 className="sider-kapper-title m-0">Timofii Fedorchuk</h3>
-                                        <div className="d-flex align-items-center">
-                                            <i className="fas fa-star mr-2"/>
-                                            <p className="sider-kapper-rate m-0">5.0</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr style={{
-                                    color: "rgb(0 0 0 / 85%)",
-                                    borderTop: "1px solid rgba(0,0,0,.06)"
-                                }}/>
-                                <div className="d-flex align-items-center sider-kapper-item mb-3">
-                                    <Avatar size="small" icon={<i className="fas fa-user-circle"/>}/>
-                                    <div className="ml-2">
-                                        <h3 className="sider-kapper-title m-0">Edward Kvashyn</h3>
-                                        <div className="d-flex align-items-center">
-                                            <i className="fas fa-star mr-2"/>
-                                            <p className="sider-kapper-rate m-0">5.0</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                {topKappers}
                             </div>
                             <div className="p-3">
                                 <h3 className="top-articles-title">Наивысший рейтинг</h3>
-                                <div className="sider-hot-news">
-                                    <div className="d-flex align-items-center">
-                                        <h3 className="sider-hot-news-title m-0">Арсенал - Бавария</h3>
-                                        <i className="fab fa-hotjar ml-auto" style={{color: "red"}}/>
-                                    </div>
-                                    <p className="sider-hot-news-description mb-1">Lorem ipsum dolor topos leryw takos
-                                        lowa
-                                        tied mderka totla</p>
-                                    <hr style={{
-                                        color: "rgb(0 0 0 / 85%)",
-                                        borderTop: "1px solid rgba(0,0,0,.06)"
-                                    }}/>
-                                </div>
-                                <div className="sider-hot-news">
-                                    <div className="d-flex align-items-center">
-                                        <h3 className="sider-hot-news-title m-0">Динамо - Шахтер</h3>
-                                        <i className="fab fa-hotjar ml-auto" style={{color: "red"}}/>
-                                    </div>
-                                    <p className="sider-hot-news-description mb-1">Ipsum dolor totla topos leryw lorem
-                                        takos
-                                        lowa tied mderka </p>
-                                    <hr style={{
-                                        color: "rgb(0 0 0 / 85%)",
-                                        borderTop: "1px solid rgba(0,0,0,.06)"
-                                    }}/>
-                                </div>
-                                <div className="sider-hot-news">
-                                    <div className="d-flex align-items-center">
-                                        <h3 className="sider-hot-news-title m-0">Челси - МЮ</h3>
-                                        <i className="fab fa-hotjar ml-auto" style={{color: "red"}}/>
-                                    </div>
-                                    <p className="sider-hot-news-description mb-1">Lorem ipsum dolor topos leryw takos
-                                        lowa
-                                        tied mderka totla</p>
-                                    <hr style={{
-                                        color: "rgb(0 0 0 / 85%)",
-                                        borderTop: "1px solid rgba(0,0,0,.06)"
-                                    }}/>
-                                </div>
+                                {hotNews}
                             </div>
                         </Sider>
                     </Layout>
@@ -274,7 +252,7 @@ const App = () => {
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a className="ml-auto" href="#">Telegram Bot</a>
                     </div>
-                    </Footer>
+                </Footer>
             </Layout>
         </div>
     );
